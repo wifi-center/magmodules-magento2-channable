@@ -22,6 +22,7 @@ interface OrderInterface extends ReturnsInterface
     const XML_PATH_SHIPPING_METHOD = 'magmodules_channable_marketplace/order/shipping_method';
     const XML_PATH_SHIPPING_CUSTOM = 'magmodules_channable_marketplace/order/shipping_method_custom';
     const XML_PATH_SHIPPING_METHOD_FALLBACK = 'magmodules_channable_marketplace/order/shipping_method_fallback';
+    const XML_PATH_SHIPPING_METHOD_FREE = 'magmodules_channable_marketplace/order/shipping_method_free';
     const XML_PATH_RETURN_LABEL = 'magmodules_channable_marketplace/order/return_label';
     const XML_PATH_RETURN_LABEL_REGEXP = 'magmodules_channable_marketplace/order/return_label_regexp';
     const XML_PATH_IMPORT_CUSTOMER = 'magmodules_channable_marketplace/order/import_customer';
@@ -87,6 +88,15 @@ interface OrderInterface extends ReturnsInterface
      * @return string
      */
     public function getFallbackShippingMethod(int $storeId = null): ?string;
+
+    /**
+     * Returns if shipping method should be free
+     *
+     * @param null|int $storeId
+     *
+     * @return string
+     */
+    public function getShippingMethodFree(int $storeId = null): bool;
 
     /**
      * Create customer on order import
