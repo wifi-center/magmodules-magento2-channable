@@ -55,6 +55,14 @@ class OrderRepository extends ReturnsRepository implements OrderInterface
     /**
      * @inheritDoc
      */
+    public function getShippingMethodFree(int $storeId = null): bool
+    {
+        return $this->isSetFlag(self::XML_PATH_SHIPPING_METHOD_FREE, $storeId);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function createCustomerOnImport(int $storeId = null): bool
     {
         return $this->isSetFlag(self::XML_PATH_IMPORT_CUSTOMER, $storeId);

@@ -67,6 +67,11 @@ class GetMethod
         $shippingMethod = $this->configProvider->getDefaultShippingMethod((int)$store->getId());
         $shippingMethodFallback = $this->configProvider->getFallbackShippingMethod((int)$store->getId());
 
+        $freeShipping = $this->configProvider->getShippingMethodFree();
+        if($freeShipping){
+            $quote->getShippingAddress()->setFreeShipping(true);
+        }
+
         $destCountryId = $quote->getShippingAddress()->getCountryId();
         $destPostcode = $quote->getShippingAddress()->getPostcode();
         $total = $quote->getGrandTotal();
