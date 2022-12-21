@@ -49,6 +49,12 @@
                 <source_model>Magento\Shipping\Model\Config\Source\Allmethods</source_model>
                 <config_path>magmodules_channable_marketplace/order/shipping_method_fallback</config_path>
             </field>
+            <field id="shipping_method_free" translate="label" type="select" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Shipping free for channable orders</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <config_path>magmodules_channable_marketplace/order/shipping_method_free</config_path>
+                <comment><![CDATA[If yes, shipping is free for channable orders]]></comment>
+            </field>
             <field id="heading_customer" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Customers</label>
                 <frontend_model>Magmodules\Channable\Block\Adminhtml\Magmodules\Heading</frontend_model>
