@@ -311,6 +311,9 @@ class Product extends AbstractHelper
             case 'min_sale_qty':
                 $value = $this->getMinSaleQtyValue($product, $config['inventory']);
                 break;
+            case 'backorders':
+                $value = $this->getBackordersValue($product, $config['inventory']);
+                break;
             case 'qty_increments':
                 $value = $this->getQtyIncrementsValue($product, $config['inventory']);
                 break;
@@ -632,6 +635,19 @@ class Product extends AbstractHelper
     }
 
     /**
+     * @param $product
+     * @param $inventory
+     * @return string
+     */
+    private function getBackordersValue($product, $inventory): string
+    {
+        $value = $product->getData('use_config_backorders')
+            ? (int)$inventory['config_backorders']
+            : (int)$product->getData('backorders');
+        return $value > 0 ? 'true' : 'false';
+    }
+
+    /**
      * @param \Magento\Catalog\Model\Product $product
      * @param [] $inventory
      *
@@ -918,7 +934,7 @@ class Product extends AbstractHelper
 
                 break;
             default:
-                if (floatval($product->getFinalPrice()) !== 0) {
+                if (intval($product->getFinalPrice()) !== 0) {
                     $price = $product->getPrice();
                     $finalPrice = $product->getFinalPrice();
                     $specialPrice = $product->getSpecialPrice();

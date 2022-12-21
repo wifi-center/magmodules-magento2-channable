@@ -197,6 +197,7 @@ class ImportSimulator
                 "country_code" => $country,
                 "state" => $country == "US" ? "Texas" : "",
                 "state_code" => $country == "US" ? "TX" : "",
+                "pickup_point_name" => "Albert Heijn: UTRECHT"
             ],
             "price" => [
                 "payment_method" => "bol",
@@ -242,7 +243,7 @@ class ImportSimulator
 
         return [
             'id' => $product->getId(),
-            'price' => $product->getPrice(),
+            'price' => $product->getFinalPrice(),
             'sku' => $product->getSku(),
             'name' => $product->getName(),
         ];
