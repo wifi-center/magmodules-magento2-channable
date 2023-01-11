@@ -1,5 +1,5 @@
 {
-    "name": "solvatech/magmodules-magento2-channable",
+    "name": "magmodules/magento2-channable",
     "description": "Channable integration for Magento 2",
     "type": "magento2-module",
     "version": "1.14.0.1",
