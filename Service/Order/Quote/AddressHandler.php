@@ -97,7 +97,7 @@ class AddressHandler
      * @return array
      * @throws LocalizedException
      */
-    private function getAddressData(string $type, array $orderData, Quote $quote): array
+    public function getAddressData(string $type, array $orderData, Quote $quote): array
     {
         $storeId = $quote->getStoreId();
         $customerId = $quote->getCustomerId();
@@ -180,13 +180,13 @@ class AddressHandler
      * @param string $type
      * @return string
      */
-    private function validateName(string $nameValue, string $type): string
+    private function validateName(string $nameValue, string $type): ?string
     {
-        if (!$nameValue && ($type != 'middle_name')) {
-            return '-';
+        if (preg_match_all(self::PATTERN_NAME, $nameValue, $matches)) {
+            return implode($matches[0]);
         }
-        preg_match_all(self::PATTERN_NAME, $nameValue, $matches);
-        return implode($matches[0]);
+
+        return $type != 'middle_name' ? '-' : null;
     }
 
     /**
@@ -198,7 +198,7 @@ class AddressHandler
      *
      * @return string
      */
-    private function getStreet(array $address, int $storeId): string
+    public function getStreet(array $address, int $storeId): string
     {
         $seperateHousenumber = $this->configProvider->seperateHousenumber((int)$storeId);
         $numberOfStreetLines = $this->configProvider->getCustomerStreetLines((int)$storeId);
